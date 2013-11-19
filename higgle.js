@@ -1,6 +1,6 @@
-(function(){
-    
-    Array.prototype.insert = function(element){
+(function() {
+
+    Array.prototype.insert = function(element) {
         this.push(element);
     };
     Array.prototype.matchQuery = function(doc, query) {
@@ -11,70 +11,69 @@
         var queryKeys = Object.keys(query);
         var queryValues = [];
         var i;
-        for(i = 0; i < queryKeys.length; i++){
+        for (i = 0; i < queryKeys.length; i++) {
             queryValues.push(query[queryKeys[i]]);
         }
         // Tokenize the document
         var docKeys = Object.keys(doc);
         var docValues = [];
-        for(i = 0; i < docKeys.length; i++){
+        for (i = 0; i < docKeys.length; i++) {
             docValues.push(doc[docKeys[i]]);
         }
         // Begin scanning the doc for matches
         var k;
-        for(i = 0; i < docKeys.length; i++){
-            for(k = 0; k < queryKeys.length; k++){
-                if(docKeys[i] == queryKeys[k]){
-                    if(docValues[i] == queryValues[k]){
+        for (i = 0; i < docKeys.length; i++) {
+            for (k = 0; k < queryKeys.length; k++) {
+                if (docKeys[i] == queryKeys[k]) {
+                    if (docValues[i] == queryValues[k]) {
                         return true;
                     }
                 }
             }
         }
         return false;
-        
+
     };
-    Array.prototype.find = function(query){
+    Array.prototype.find = function(query) {
         // handle returnign any empty queries
-        if(!query || JSON.stringify(query) === '{}'){
+        if (!query || JSON.stringify(query) === '{}') {
             return this;
         }
         // handle any real queries
-        else{
+        else {
             // this is the result array
             // it will be packed with matching json documents
             var result = [];
-            
+
             // loop through each document in the collection
             var i;
-            for(i = 0; i < this.length; i++){
+            for (i = 0; i < this.length; i++) {
                 // console log the current document we are testing
                 console.log('Current document:');
                 var currentDoc = this[i];
                 console.log(currentDoc);
-                if (result.matchQuery(currentDoc,query)){
+                if (result.matchQuery(currentDoc, query)) {
                     result.push(currentDoc);
                 }
             }
-            if(result.length !== 0){
+            if (result.length !== 0) {
                 return result;
-            }
-            else{
+            } else {
                 return false;
             }
         }
     };
-    
+
     this.Higgle = function Higgle() {
         this.collections = [];
     };
     Higgle.prototype.createCollection = function(name) {
-        this.collections.push([name,[]]);
+        this.collections.push([name, []]);
     };
     Higgle.prototype.collection = function(name) {
         var i;
-        for(i = 0; i < this.collections.length; i++){
-            if(name = this.collections[i][0]){
+        for (i = 0; i < this.collections.length; i++) {
+            if (name == this.collections[i][0]) {
                 return this.collections[i][1];
             }
         }
@@ -89,20 +88,25 @@
 var db = new Higgle();
 db.createCollection("Books");
 var esums = db.collection("Books");
-esums.insert({'DOC': 1,
-              'Principal':'Blue',
-              'Dean of Strapping':'Newlyn Joseph',
-              'IPs':[5234, 7432]
-             });
-esums.insert({'DOC': 2,
-              'Harry Potter':'JK Rowling',
-              'Swag':'Newlyn Joseph'
-             });
-esums.insert({'DOC': 3,
-              'Principal':'Blue',
-              'Dean of Strapping':'Newlyn Joseph',
-              'IPs':[5234, 7432]
-             });
-var queryresults = esums.find({'Principal':'Blue'});
+esums.insert({
+    'DOC': 1,
+    'Principal': 'Blue',
+    'Dean of Strapping': 'Newlyn Joseph',
+    'IPs': [5234, 7432]
+});
+esums.insert({
+    'DOC': 2,
+    'Harry Potter': 'JK Rowling',
+    'Swag': 'Newlyn Joseph'
+});
+esums.insert({
+    'DOC': 3,
+    'Principal': 'Blue',
+    'Dean of Strapping': 'Newlyn Joseph',
+    'IPs': [5234, 7432]
+});
+var queryresults = esums.find({
+    'Principal': 'Blue'
+});
 console.log("Matching documents");
 console.log(queryresults);

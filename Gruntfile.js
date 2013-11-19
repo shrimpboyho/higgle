@@ -1,9 +1,11 @@
 module.exports = function(grunt) {
 
-  // A very basic default task.
-  grunt.registerTask('default', 'Log some stuff.', function() {
-    grunt.log.write('Logging some stuff...').ok();
-  });
+	grunt.initConfig({
+		jshint: {
+			all: ['Gruntfile.js', 'higgle.js']
+		}
+	});
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.registerTask('default', ['jshint']);
 
 };
-
