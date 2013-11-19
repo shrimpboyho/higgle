@@ -65,7 +65,7 @@
         }
     };
     
-    window.Higgle = function Higgle() {
+    this.Higgle = function Higgle() {
         this.collections = [];
     };
     Higgle.prototype.createCollection = function(name) {
@@ -84,7 +84,7 @@
         return true;
     };
 
-})();
+})(this);
 
 var db = new Higgle();
 db.createCollection("Books");
