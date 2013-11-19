@@ -1,0 +1,27 @@
+{
+  "name": "higgle",
+  "version": "0.0.1",
+  "description": "A database system",
+  "main": "higgle.js",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node higgle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shrimpboyho/higgle"
+  },
+  "keywords": [
+    "database",
+    "json",
+    "store"
+  ],
+  "author": "shrimpboyho",
+  "license": "GPL",
+  "gitHead": "a2a7dc34e5bdf8e2c9c1edffcdf8b54f78237144",
+  "readmeFilename": "README.md"
+}
