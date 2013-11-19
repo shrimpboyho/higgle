@@ -1,5 +1,6 @@
 [higgle]() - A Simple Database in JavaScript
 ======
+[![Build Status](https://drone.io/github.com/shrimpboyho/higgle/status.png)](https://drone.io/github.com/shrimpboyho/higgle/latest)
 
 So, yeah, it's not complete yet, but it can support simple queries and has an API similar to ```mongodb```.
 
