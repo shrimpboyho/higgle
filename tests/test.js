@@ -29,6 +29,14 @@ esums.insert({
     },
     'Dean of Strapping': 'Newlyn Joseph'
 });
+esums.insert({
+    'DOC': 5,
+    'Package': {
+        'lark': 69,
+        'narc': 70
+    },
+    'Dean of Strapping': 'Newlyn Joseph'
+});
 
 // Test simple string value
 var query = {
@@ -50,7 +58,7 @@ var queryresults = esums.find(query);
 console.log("Matches:".green);
 console.log(queryresults);
 
-// Test simple JSON values
+// Test simple JSON in JSON query values
 var query = {
     'Package': {
         'lark': 69
@@ -62,10 +70,23 @@ var queryresults = esums.find(query);
 console.log("Matches:".green);
 console.log(queryresults);
 
-// Test double JSON values
+// Test double JSON query values
 var query = {
     'Principal': 'Blue',
     'Dean of Strapping': 'Newlyn Joseph'
+};
+console.log('Query:'.red);
+console.log(query);
+var queryresults = esums.find(query);
+console.log("Matches:".green);
+console.log(queryresults);
+
+// Test depth JSON in JSON query values
+var query = {
+    'Package': {
+        'lark': 69,
+        'narc': 70
+    }
 };
 console.log('Query:'.red);
 console.log(query);

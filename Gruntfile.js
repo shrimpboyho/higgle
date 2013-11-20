@@ -17,11 +17,15 @@ module.exports = function(grunt) {
         jsbeautifier: {
             files: ["higgle.js", 'Gruntfile.js'],
             options: {}
+        },
+        qunit: {
+            all: ['tests/test.js']
         }
     });
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-jsbeautifier');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.registerTask('default', ['jsbeautifier', 'jshint', 'uglify']);
 
 };
