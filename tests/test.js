@@ -61,3 +61,14 @@ console.log(query);
 var queryresults = esums.find(query);
 console.log("Matches:".green);
 console.log(queryresults);
+
+// Test double JSON values
+var query = {
+    'Principal': 'Blue',
+    'Dean of Strapping': 'Newlyn Joseph'
+};
+console.log('Query:'.red);
+console.log(query);
+var queryresults = esums.find(query);
+console.log("Matches:".green);
+console.log(queryresults);
