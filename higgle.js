@@ -1,8 +1,15 @@
 (function() {
-
+    function checkCall(cb, arg) {
+        if (cb)
+            cb(arg);
+        else
+            return arg;
+    }
+    // Inserts a JSON document element into an array.
     Array.prototype.insert = function(element) {
         this.push(element);
     };
+    // An internal function used for finding the query matches within a collection
     Array.prototype.matchQuery = function(doc, query) {
         // Console log the query
         console.log('Query:');
@@ -56,6 +63,7 @@
         return false;
 
     };
+    // Returns the results of a query
     Array.prototype.find = function(query, callback) {
         // handle returning any empty queries
         if (!query || JSON.stringify(query) === '{}') {
@@ -79,44 +87,30 @@
                 }
             }
             if (result.length !== 0) {
-                if (callback) {
-                    callback(result);
-                } else {
-                    return result;
-                }
-
+                return checkCall(callback, result);
             } else {
-                if (callback) {
-                    callback(false);
-                } else {
-                    return result;
-                }
+                return checkCall(callback, false);
             }
         }
     };
-
+    // Constructor for the Higgle object
     this.Higgle = function Higgle() {
+        // Represents all the collections within the database
         this.collections = [];
     };
+    // Allows user to create a new collection
     Higgle.prototype.createCollection = function(name, callback) {
         this.collections.push([name, []]);
     };
+    // Returns a collection if it exists.
     Higgle.prototype.collection = function(name, callback) {
         var i;
         for (i = 0; i < this.collections.length; i++) {
             if (name == this.collections[i][0]) {
-                if (callback) {
-                    callback(this.collections[i][1]);
-                } else {
-                    return this.collections[i][1];
-                }
+                return checkCall(callback, this.collections[i][1]);
             }
         }
-        if (callback) {
-            callback(false);
-        } else {
-            return false;
-        }
+        return checkCall(callback, false);
     };
     Higgle.prototype.close = function() {
         return true;
@@ -124,7 +118,7 @@
 
 })(this);
 
-// Node.js exports
+// Node.js exportss
 if (typeof exports) {
     module.exports = Higgle;
 }
