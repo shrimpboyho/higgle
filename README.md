@@ -1,4 +1,4 @@
-[higgle]() - A Simple Database in JavaScript
+[higgle]() - A Tiny Database in JavaScript
 ======
 [![Build Status](https://drone.io/github.com/shrimpboyho/higgle/status.png)](https://drone.io/github.com/shrimpboyho/higgle/latest)
 
