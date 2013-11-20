@@ -34,8 +34,8 @@
         return false;
 
     };
-    Array.prototype.find = function(query) {
-        // handle returnign any empty queries
+    Array.prototype.find = function(query, callback) {
+        // handle returning any empty queries
         if (!query || JSON.stringify(query) === '{}') {
             return this;
         }
@@ -57,9 +57,18 @@
                 }
             }
             if (result.length !== 0) {
-                return result;
+                if (callback) {
+                    callback(result);
+                } else {
+                    return result;
+                }
+
             } else {
-                return false;
+                if (callback) {
+                    callback(false);
+                } else {
+                    return result;
+                }
             }
         }
     };
@@ -67,17 +76,25 @@
     this.Higgle = function Higgle() {
         this.collections = [];
     };
-    Higgle.prototype.createCollection = function(name) {
+    Higgle.prototype.createCollection = function(name, callback) {
         this.collections.push([name, []]);
     };
-    Higgle.prototype.collection = function(name) {
+    Higgle.prototype.collection = function(name, callback) {
         var i;
         for (i = 0; i < this.collections.length; i++) {
             if (name == this.collections[i][0]) {
-                return this.collections[i][1];
+                if (callback) {
+                    callback(this.collections[i][1]);
+                } else {
+                    return this.collections[i][1];
+                }
             }
         }
-        return false;
+        if (callback) {
+            callback(false);
+        } else {
+            return false;
+        }
     };
     Higgle.prototype.close = function() {
         return true;
