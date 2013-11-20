@@ -1,4 +1,12 @@
 (function() {
+    // Clear an array
+    Array.prototype.clear = function() {
+        while (this.length > 0) {
+            this.pop();
+        }
+    };
+    // Handles callback
+
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -11,11 +19,9 @@
     };
     // An internal function used for finding the query matches within a collection
     Array.prototype.matchQuery = function(doc, query) {
-        // Console log the query
-        console.log('Query:');
-        console.log(query);
         // Tokenize the query
         var queryKeys = Object.keys(query);
+        var queryKeysNum = queryKeys.length;
         var queryValues = [];
         var i;
         for (i = 0; i < queryKeys.length; i++) {
@@ -27,6 +33,8 @@
         for (i = 0; i < docKeys.length; i++) {
             docValues.push(doc[docKeys[i]]);
         }
+        // Set up the true colelctor
+        var buffer = [];
         // Begin scanning the doc for matches
         var k;
         for (i = 0; i < docKeys.length; i++) {
@@ -43,24 +51,28 @@
                         // check if arrays
                         if (Array.isArray(qvalue)) {
                             if (JSON.stringify(qvalue) === JSON.stringify(dvalue)) {
-                                return true;
+                                buffer.push(true);
                             }
                         }
                         // check if json
                         else if (type === 'object') {
                             if (JSON.stringify(qvalue) === JSON.stringify(dvalue)) {
-                                return true;
+                                buffer.push(true);
                             }
                         }
                         // check if anything else
                         if (qvalue === dvalue) {
-                            return true;
+                            buffer.push(true);
                         }
                     }
                 }
             }
         }
-        return false;
+        if (buffer.length === queryKeysNum) {
+            return true;
+        } else {
+            return false;
+        }
 
     };
     // Returns the results of a query
@@ -78,10 +90,8 @@
             // loop through each document in the collection
             var i;
             for (i = 0; i < this.length; i++) {
-                // console log the current document we are testing
-                console.log('Current document:');
+                // setup the current document and see if it matches
                 var currentDoc = this[i];
-                console.log(currentDoc);
                 if (result.matchQuery(currentDoc, query)) {
                     result.push(currentDoc);
                 }
