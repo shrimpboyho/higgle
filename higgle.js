@@ -25,8 +25,30 @@
         for (i = 0; i < docKeys.length; i++) {
             for (k = 0; k < queryKeys.length; k++) {
                 if (docKeys[i] == queryKeys[k]) {
-                    if (docValues[i] == queryValues[k]) {
-                        return true;
+                    var dvalue = docValues[i];
+                    var qvalue = queryValues[k];
+                    // if they are not of the same type skip checking them
+                    if (typeof dvalue !== typeof qvalue) {
+                        continue;
+                    } else {
+                        // determine what the type is
+                        var type = typeof qvalue;
+                        // check if arrays
+                        if (Array.isArray(qvalue)) {
+                            if (JSON.stringify(qvalue) === JSON.stringify(dvalue)) {
+                                return true;
+                            }
+                        }
+                        // check if json
+                        else if (type === 'object') {
+                            if (JSON.stringify(qvalue) === JSON.stringify(dvalue)) {
+                                return true;
+                            }
+                        }
+                        // check if anything else
+                        if (qvalue === dvalue) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -103,6 +125,6 @@
 })(this);
 
 // Node.js exports
-if(typeof exports){
-    module.exports.Higgle = Higgle;
+if (typeof exports) {
+    module.exports = Higgle;
 }
