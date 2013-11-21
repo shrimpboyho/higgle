@@ -29,7 +29,7 @@ console.log(queryresults);
 
 ##How To Install
 
-If your working on the client side, just include the script ```higgle.js```.
+If you're working on the client side, just include the script ```higgle.js```.
 
 ```html
 <script src="higgle.js"></script>
