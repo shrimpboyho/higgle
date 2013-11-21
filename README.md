@@ -26,3 +26,22 @@ var queryresults = esums.find({'Principal':'Blue'});
 console.log("Matching documents");
 console.log(queryresults);
 ```
+
+##How To Install
+
+If your working on the client side, just include the script ```higgle.js```.
+
+```html
+<script src="higgle.js"></script>
+<script src="your_code.js"></script>
+```
+
+On Node.js just require the module after installing it via NPM.
+
+```bash
+$ npm install higgle
+```
+
+```js
+var Higgle = require('higgle')
+```
