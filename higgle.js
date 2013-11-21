@@ -6,6 +6,7 @@
         }
     };
     // Handles callback
+
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -41,9 +42,13 @@
                 if (docKeys[i] == queryKeys[k]) {
                     var dvalue = docValues[i];
                     var qvalue = queryValues[k];
-                    // if they are not of the same type skip checking them
-                    if (typeof dvalue !== typeof qvalue) {
+                    // if they are not of the same type and there are no higgle operators
+                    if ((typeof dvalue !== typeof qvalue) && (qvalue.constructor.name !== "HiggleOp")) {
                         continue;
+                    }
+                    // if they are of the same type and higgle operators are present
+                    if ((typeof dvalue === typeof qvalue) && (qvalue.constructor.name === "HiggleOp")) {
+
                     } else {
                         // determine what the type is
                         var type = typeof qvalue;
