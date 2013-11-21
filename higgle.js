@@ -6,7 +6,6 @@
         }
     };
     // Handles callback
-
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -124,6 +123,38 @@
     };
     Higgle.prototype.close = function() {
         return true;
+    };
+
+    // Constructor for the Higgle operator object
+    this.HiggleOp = function HiggleOp(type) {
+        this.type = type;
+    };
+    // Methods for the higgle operator
+    HiggleOp.prototype.setLess = function(less) {
+        this.less = less;
+    };
+    HiggleOp.prototype.setGreat = function(great) {
+        this.great = great;
+    };
+    HiggleOp.prototype.setRange = function(lower, upper) {
+        this.lower = lower;
+        this.upper = upper;
+    };
+    // Create the global higgle operator functions
+    this.less = function(num) {
+        var op = new HiggleOp('less');
+        op.setLess(num);
+        return op;
+    };
+    this.great = function(num) {
+        var op = new HiggleOp('great');
+        op.setGreat(num);
+        return op;
+    };
+    this.range = function(lower, upper) {
+        var op = new HiggleOp('range');
+        op.setRange(lower, upper);
+        return op;
     };
 
 })(this);
