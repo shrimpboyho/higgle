@@ -53,9 +53,26 @@
                     if ((typeof dvalue !== typeof qvalue) && (qvalue.constructor.name !== "HiggleOp")) {
                         continue;
                     }
-                    // if they are of the same type and higgle operators are present
-                    if ((typeof dvalue === typeof qvalue) && (qvalue.constructor.name === "HiggleOp")) {
-
+                    // if they are not of the same type and higgle operators are present
+                    if ((typeof dvalue !== typeof qvalue) && (qvalue.constructor.name === "HiggleOp")) {
+                        if (qvalue.type === 'less') {
+                            // check if the value is actually less than
+                            if (dvalue < qvalue.less) {
+                                buffer.push(true);
+                            }
+                        }
+                        if (qvalue.type === 'great') {
+                            // check if the value is actually greater than
+                            if (dvalue > qvalue.great) {
+                                buffer.push(true);
+                            }
+                        }
+                        if (qvalue.type === 'range') {
+                            // check if the value is actually greater than
+                            if ((dvalue > lower) && (dvalue < upper)) {
+                                buffer.push(true);
+                            }
+                        }
                     } else {
                         // determine what the type is
                         var type = typeof qvalue;

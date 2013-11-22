@@ -93,3 +93,53 @@ console.log(query);
 var queryresults = esums.find(query);
 console.log("Matches:".green);
 console.log(queryresults);
+
+/* Begin testing of the operators
+ *
+ *   -> less
+ *   -> great
+ *   -> range
+ */
+
+db.createCollection("people");
+var people = db.collection("people");
+
+people.insert({
+    'name': 'Ethan',
+    'age': 4
+});
+
+people.insert({
+    'name': 'Adrian',
+    'age': 10
+});
+
+people.insert({
+    'name': 'Dana',
+    'age': 14
+});
+
+people.insert({
+    'name': 'Melina',
+    'age': 12
+});
+
+// Test the less operator
+var query = {
+    'age': less(21)
+};
+console.log('Query:'.red);
+console.log(query);
+var queryresults = people.find(query);
+console.log("Matches:".green);
+console.log(queryresults);
+
+// Test the great operator
+var query = {
+    'age': great(21)
+};
+console.log('Query:'.red);
+console.log(query);
+var queryresults = people.find(query);
+console.log("Matches:".green);
+console.log(queryresults);
