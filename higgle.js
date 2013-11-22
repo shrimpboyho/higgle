@@ -13,6 +13,7 @@
         }
     };
     // Handles callback
+
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -26,24 +27,24 @@
     // An internal function used for finding the query matches within a collection
     HiggleCollection.prototype.matchQuery = function(doc, query) {
         // Tokenize the query
-        var queryKeys = Object.keys(query);
-        var queryKeysNum = queryKeys.length;
-        var queryValues = [];
-        var i;
+        var queryKeys = Object.keys(query),
+            docKeys = Object.keys(doc),
+            queryKeysNum = queryKeys.length,
+            queryValues = [],
+            docValues = [],
+            buffer = [], // Set up the true colelctor
+            k, i;
+
         for (i = 0; i < queryKeys.length; i++) {
             queryValues.push(query[queryKeys[i]]);
         }
-        // Tokenize the document
-        var docKeys = Object.keys(doc);
-        var docValues = [];
+
         for (i = 0; i < docKeys.length; i++) {
             docValues.push(doc[docKeys[i]]);
         }
-        // Set up the true colelctor
-        var buffer = [];
         // Begin scanning the doc for matches
-        var k;
-        for (i = 0; i < docKeys.length; i++) {
+        var len = docKeys.length;
+        for (i = 0; i < len; i++) {
             for (k = 0; k < queryKeys.length; k++) {
                 if (docKeys[i] == queryKeys[k]) {
                     var dvalue = docValues[i];
