@@ -1,12 +1,18 @@
 (function() {
-    // Clear an array
-    Array.prototype.clear = function() {
+    // Array wrapper
+    function HiggleCollection() {
+        Array.call(this, arguments);
+    }
+    HiggleCollection.prototype = [];
+    HiggleCollection.prototype.each = function each(callback) {
+        return this.forEach(callback);
+    };
+    HiggleCollection.prototype.clear = function() {
         while (this.length > 0) {
             this.pop();
         }
     };
     // Handles callback
-
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -14,11 +20,11 @@
             return arg;
     }
     // Inserts a JSON document element into an array.
-    Array.prototype.insert = function(element) {
+    HiggleCollection.prototype.insert = function(element) {
         this.push(element);
     };
     // An internal function used for finding the query matches within a collection
-    Array.prototype.matchQuery = function(doc, query) {
+    HiggleCollection.prototype.matchQuery = function(doc, query) {
         // Tokenize the query
         var queryKeys = Object.keys(query);
         var queryKeysNum = queryKeys.length;
@@ -80,7 +86,7 @@
 
     };
     // Returns the results of a query
-    Array.prototype.find = function(query, callback) {
+    HiggleCollection.prototype.find = function(query, callback) {
         // handle returning any empty queries
         if (!query || JSON.stringify(query) === '{}') {
             return this;
@@ -89,7 +95,7 @@
         else {
             // this is the result array
             // it will be packed with matching json documents
-            var result = [];
+            var result = new HiggleCollection();
 
             // loop through each document in the collection
             var i;
@@ -114,7 +120,8 @@
     };
     // Allows user to create a new collection
     Higgle.prototype.createCollection = function(name, callback) {
-        this.collections.push([name, []]);
+        var k = new HiggleCollection();
+        this.collections.push([name, k]);
     };
     // Returns a collection if it exists.
     Higgle.prototype.collection = function(name, callback) {
