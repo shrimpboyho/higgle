@@ -173,6 +173,6 @@
 })(this);
 
 // Node.js exportss
-if (typeof exports) {
+if (typeof exports !== 'undefined') {
     module.exports = Higgle;
 }
