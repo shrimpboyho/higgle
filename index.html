@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Higgle by shrimpboyho</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Higgle</h1>
+        <h2>A Tiny JavaScript Database System</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/shrimpboyho/higgle/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/shrimpboyho/higgle/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/shrimpboyho/higgle" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="higgle---a-tiny-javascript-database-system" class="anchor" href="#higgle---a-tiny-javascript-database-system"><span class="octicon octicon-link"></span></a><a href="">higgle</a> - A Tiny JavaScript Database System</h1>
+
+<p><a href="https://drone.io/github.com/shrimpboyho/higgle/latest"><img src="https://drone.io/github.com/shrimpboyho/higgle/status.png" alt="Build Status"></a></p>
+
+<p>So, yeah, it's not complete yet, but it can support simple queries and has an API similar to <code>mongodb</code>.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Higgle</span><span class="p">();</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">createCollection</span><span class="p">(</span><span class="s2">"Books"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">esums</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Books"</span><span class="p">);</span>
+<span class="nx">esums</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="s1">'DOC'</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s1">'Principal'</span><span class="o">:</span><span class="s1">'Blue'</span><span class="p">,</span>
+              <span class="s1">'Dean of Strapping'</span><span class="o">:</span><span class="s1">'Newlyn Joseph'</span><span class="p">,</span>
+              <span class="s1">'IPs'</span><span class="o">:</span><span class="p">[</span><span class="mi">5234</span><span class="p">,</span> <span class="mi">7432</span><span class="p">]</span>
+             <span class="p">});</span>
+<span class="nx">esums</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="s1">'DOC'</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+              <span class="s1">'Harry Potter'</span><span class="o">:</span><span class="s1">'JK Rowling'</span><span class="p">,</span>
+              <span class="s1">'Swag'</span><span class="o">:</span><span class="s1">'Newlyn Joseph'</span>
+             <span class="p">});</span>
+<span class="nx">esums</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="s1">'DOC'</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+              <span class="s1">'Principal'</span><span class="o">:</span><span class="s1">'Blue'</span><span class="p">,</span>
+              <span class="s1">'Dean of Strapping'</span><span class="o">:</span><span class="s1">'Newlyn Joseph'</span><span class="p">,</span>
+              <span class="s1">'IPs'</span><span class="o">:</span><span class="p">[</span><span class="mi">5234</span><span class="p">,</span> <span class="mi">7432</span><span class="p">]</span>
+             <span class="p">});</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">esums</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s1">'Principal'</span><span class="o">:</span><span class="s1">'Blue'</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Matching documents"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queryresults</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How To Install</h2>
+
+<p>If you're working on the client side, just include the script <code>higgle.js</code>. This will provide you with the <code>Higgle</code> object attached to the <code>window</code> object.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"higgle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"your_code.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>On Node.js just require the module after installing it via NPM.</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install higgle
+</pre></div>
+
+<div class="highlight highlight-js"><pre><span class="c1">// On Node.js you must require the module in order to use the Higgle object</span>
+<span class="kd">var</span> <span class="nx">Higgle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'higgle'</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a name="creating-a-database" class="anchor" href="#creating-a-database"><span class="octicon octicon-link"></span></a>Creating a Database</h3>
+
+<p>Using <code>Higgle</code> is super simple. The <code>Higgle</code> object represents your entire database. You can create an instance of one as follows:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Higgle</span><span class="p">();</span>  <span class="c1">// It is common convention to name your database object 'db'</span>
+</pre></div>
+
+<h3>
+<a name="creating-a-collection" class="anchor" href="#creating-a-collection"><span class="octicon octicon-link"></span></a>Creating a Collection</h3>
+
+<p>Within a database you can have one or more collections. Collections are a group of JSON documents. You can create a collection by calling the following method on your database object.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">createCollection</span><span class="p">(</span><span class="s2">"People"</span><span class="p">);</span>
+</pre></div>
+
+<p>All you must specify as an argument is a string which will be the name of the collection.
+You can now grab a handle to the collection by calling the following method on your database object.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">people</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"People"</span><span class="p">);</span>
+</pre></div>
+
+<p>All you must specify as an argument is the name of the collection (the same name you used to create the collection). The variable <code>people</code> is a collection object which you can utilize to modify your database.</p>
+
+<h3>
+<a name="adding-data" class="anchor" href="#adding-data"><span class="octicon octicon-link"></span></a>Adding Data</h3>
+
+<p>Adding data is super simple. Just call the following method on the collection object and specify the JSON document you want to add to the collection.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">people</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="s1">'name'</span><span class="o">:</span> <span class="s1">'wiley'</span><span class="p">,</span>
+               <span class="s1">'age'</span><span class="o">:</span> <span class="mi">35</span>
+             <span class="p">});</span>
+<span class="nx">people</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="s1">'name'</span><span class="o">:</span> <span class="s1">'smith'</span><span class="p">,</span>
+               <span class="s1">'age'</span><span class="o">:</span> <span class="mi">16</span>
+             <span class="p">});</span>
+</pre></div>
+
+<p>The above code adds two JSON documents to the collection known as <code>people</code>.</p>
+
+<h3>
+<a name="querying-data" class="anchor" href="#querying-data"><span class="octicon octicon-link"></span></a>Querying Data</h3>
+
+<h4>
+<a name="simple-queries" class="anchor" href="#simple-queries"><span class="octicon octicon-link"></span></a>Simple Queries</h4>
+
+<p>Querying data is also super simple. Every query returns an array full of documents that matched the query. To perform a query call the following method on the collection object:</p>
+
+<div class="highlight highlight-js"><pre><span class="c1">// This query will find all documents in the collection known as</span>
+<span class="c1">// 'people' that have the string 'wiley' paired with the key 'name'</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s1">'name'</span><span class="o">:</span><span class="s1">'wiley'</span><span class="p">});</span>
+
+<span class="c1">// You can also query with multiple JSON keys</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s1">'name'</span><span class="o">:</span><span class="s1">'wiley'</span><span class="p">,</span>
+                                <span class="s1">'age'</span><span class="o">:</span> <span class="mi">13</span>
+                               <span class="p">});</span>
+</pre></div>
+
+<p>The <code>queryresults</code> object is an array with all the JSON documents that matched the query.</p>
+
+<h4>
+<a name="conditional-queries" class="anchor" href="#conditional-queries"><span class="octicon octicon-link"></span></a>Conditional Queries</h4>
+
+<p>Say for example we want to know all the people who can legally drink. To perform such a query we would do the following:</p>
+
+<div class="highlight highlight-js"><pre><span class="c1">// Find all documents where the key of 'age' has a value greater than 21</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="s1">'age'</span><span class="o">:</span> <span class="nx">great</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="p">});</span>
+</pre></div>
+
+<p>Similarly, if we want to find all the documents in which the key of <code>age</code> has a value that is less than 21 we could perform the following query:</p>
+
+<div class="highlight highlight-js"><pre><span class="c1">// Find all documents where the key of 'age' has a value less than 21</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="s1">'age'</span><span class="o">:</span> <span class="nx">less</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="p">});</span>
+</pre></div>
+
+<p>Similarly, if we want to find documents with a key of <code>age</code> that takes on a certain range of values, we can do so:</p>
+
+<div class="highlight highlight-js"><pre><span class="c1">// Find all documents where the key of 'age' has a value in between 6 and 24</span>
+<span class="kd">var</span> <span class="nx">queryresults</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="s1">'age'</span><span class="o">:</span> <span class="nx">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="p">});</span>
+</pre></div>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
