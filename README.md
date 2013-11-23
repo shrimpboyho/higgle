@@ -95,6 +95,6 @@ var queryresults = people.find({ 'age': less(21) });
 ```
 Similarly, if we want to find documents with a key of ```age``` that takes on a certain range of values, we can do so:
 ```js
-// Find all documents where the key of 'age' has a value greater than 6 but less than 24
+// Find all documents where the key of 'age' has a value in between 6 and 24
 var queryresults = people.find({ 'age': range(6, 24) });
 ```
