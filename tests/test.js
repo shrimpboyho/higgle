@@ -143,3 +143,6 @@ console.log(query);
 var queryresults = people.find(query);
 console.log("Matches:".green);
 console.log(queryresults);
+
+// Dump the entire databse
+db.dump('db.json');

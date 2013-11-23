@@ -151,10 +151,24 @@
         }
         return checkCall(callback, false);
     };
+    // Closes the database
     Higgle.prototype.close = function() {
         return true;
     };
-
+    // Dumps the database to a file
+    Higgle.prototype.dump = function(name) {
+        require('fs').writeFile(name, require('buffalo').serialize(JSON.stringify(this.collections)), function(err) {
+            if (err) throw err;
+        });
+    };
+    // Load a database from a file
+    Higgle.prototype.load = function(name) {
+        require('fs').readFile(name, 'utf8', function(err, buffer) {
+            if (err) throw err;
+            this.collections = require('buffalo').parse(buffer);
+            console.log(this.collections);
+        });
+    };
     // Constructor for the Higgle operator object
     this.HiggleOp = function HiggleOp(type) {
         this.type = type;
