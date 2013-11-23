@@ -3,7 +3,6 @@
 [![Build Status](https://drone.io/github.com/shrimpboyho/higgle/status.png)](https://drone.io/github.com/shrimpboyho/higgle/latest)
 
 So, yeah, it's not complete yet, but it can support simple queries and has an API similar to ```mongodb```.
-
 ```js
 var db = new Higgle();
 db.createCollection("Books");
@@ -26,9 +25,7 @@ var queryresults = esums.find({'Principal':'Blue'});
 console.log("Matching documents");
 console.log(queryresults);
 ```
-
 ##How To Install
-
 If you're working on the client side, just include the script ```higgle.js```. This will provide you with the ```Higgle``` object attached to the ```window``` object.
 ```html
 <script src="higgle.js"></script>
@@ -90,4 +87,14 @@ Say for example we want to know all the people who can legally drink. To perform
 ```js
 // Find all documents where the key of 'age' has a value greater than 21
 var queryresults = people.find({ 'age': great(21) });
+```
+Similarly, if we want to find all the documents in which the key of ```age``` has a value that is less than 21 we could perform the following query:
+```js
+// Find all documents where the key of 'age' has a value less than 21
+var queryresults = people.find({ 'age': less(21) });
+```
+Similarly, if we want to find documents with a key of ```age``` that takes on a certain range of values, we can do so:
+```js
+// Find all documents where the key of 'age' has a value greater than 6 but less than 24
+var queryresults = people.find({ 'age': range(6, 24) });
 ```
