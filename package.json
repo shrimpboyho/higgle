@@ -1,6 +1,6 @@
 {
   "name": "higgle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A database system",
   "main": "higgle.js",
   "dependencies": {
