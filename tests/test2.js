@@ -19,9 +19,7 @@ esums.insert({
   'Dean of Strapping': 'Newlyn Joseph',
   'IPs': [5234, 7432]
 });
-var query = {
-  'DOC': great(1)
-};
-var queryresults = esums.find(query);
+
+var queryresults = esums.find({ 'DOC': great(1) });
 console.log("Matching documents");
 console.log(queryresults);
