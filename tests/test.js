@@ -146,3 +146,11 @@ console.log(queryresults);
 
 // Dump the entire databse
 db.dump('db.json');
+
+// Load back up the database and print it
+var db2 = new Higgle();
+console.log("Loaded db:".green);
+db2.load('db.json', function(db){
+    db2 = db;
+    console.log(JSON.stringify(db2.collections).cyan);
+});

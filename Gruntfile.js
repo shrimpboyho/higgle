@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                mangle: false
+                mangle: false,
             },
             my_target: {
                 files: {

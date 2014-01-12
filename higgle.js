@@ -157,16 +157,17 @@
     };
     // Dumps the database to a file
     Higgle.prototype.dump = function(name) {
-        require('fs').writeFile(name, require('buffalo').serialize(JSON.stringify(this.collections)), function(err) {
+        require('fs').writeFile(name, JSON.stringify(this.collections), function(err) {
             if (err) throw err;
         });
     };
     // Load a database from a file
-    Higgle.prototype.load = function(name) {
+    Higgle.prototype.load = function(name, cb) {
         require('fs').readFile(name, 'utf8', function(err, buffer) {
             if (err) throw err;
-            this.collections = require('buffalo').parse(buffer);
-            console.log(this.collections);
+            var newone = new Higgle();
+            newone.collections = JSON.parse(buffer);
+            cb(newone);
         });
     };
     // Constructor for the Higgle operator object
