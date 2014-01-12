@@ -70,6 +70,26 @@ people.insert({'name': 'smith',
              });
 ```
 The above code adds two JSON documents to the collection known as ```people```.
+###Saving Data
+```higgle``` allows for data to be dumped to a file, and read from a file.
+####Dumping Data
+To dump data to a JSON file just call the ```dump()``` method.
+```js
+// dump to the json file named "data.json"
+people.dump('data.json');
+```
+####Loading data (IN BETA
+One can load data into a database from a file like this:
+```js
+// Load back up the database and print it
+var citizens = new Higgle();
+citizens.load('data.json', function(db){
+    citzens = db; // THIS LINE IS REQUIRED IN ORDER TO REFRESH THE 
+                  // DATABASE OBJECT TO MATCH THE NEW CONTENT
+});
+// Now the citizens database is ready to use
+console.log(citizens.collection('USA'));
+```
 ###Querying Data
 ####Simple Queries
 Querying data is also super simple. Every query returns an array full of documents that matched the query. To perform a query call the following method on the collection object:
