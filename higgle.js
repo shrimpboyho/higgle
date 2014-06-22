@@ -13,7 +13,6 @@
         }
     };
     // Handles callback
-
     function checkCall(cb, arg) {
         if (cb)
             cb(arg);
@@ -32,7 +31,7 @@
             queryKeysNum = queryKeys.length,
             queryValues = [],
             docValues = [],
-            buffer = [], // Set up the true colelctor
+            buffer = [], // Set up the true collector
             k, i;
 
         for (i = 0; i < queryKeys.length; i++) {
