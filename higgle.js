@@ -76,7 +76,7 @@
                             // check if the value matches one of the possibilities
                             var z;
                             for (z = 0; z < qvalue.possibilities.length; z++) {
-                                if(qvalue.possibilities[z] === dvalue) {
+                                if (qvalue.possibilities[z] === dvalue) {
                                     buffer.push(true);
                                     break;
                                 }
@@ -194,9 +194,9 @@
         this.lower = lower;
         this.upper = upper;
     };
-    HiggleOp.prototype.setPossibleValues = function(values){
+    HiggleOp.prototype.setPossibleValues = function(values) {
         this.possibilities = values;
-    }
+    };
     // Create the global higgle operator functions
     this.less = function(num) {
         var op = new HiggleOp('less');
