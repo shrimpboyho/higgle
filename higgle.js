@@ -72,6 +72,16 @@
                                 buffer.push(true);
                             }
                         }
+                        if (qvalue.type === 'or') {
+                            // check if the value matches one of the possibilities
+                            var i;
+                            for (i = 0; i < qvalue.possibilities.length; i++) {
+                                if(qvalue.possibilities[i] === dvalue) {
+                                    buffer.push(true);
+                                    break;
+                                }
+                            }
+                        }
                     } else {
                         // determine what the type is
                         var type = typeof qvalue;
@@ -184,6 +194,9 @@
         this.lower = lower;
         this.upper = upper;
     };
+    HiggleOp.prototype.setPossibleValues = function(values){
+        this.possibilities = values;
+    }
     // Create the global higgle operator functions
     this.less = function(num) {
         var op = new HiggleOp('less');
@@ -198,6 +211,11 @@
     this.range = function(lower, upper) {
         var op = new HiggleOp('range');
         op.setRange(lower, upper);
+        return op;
+    };
+    this.or = function(values) {
+        var op = new HiggleOp('or');
+        op.setPossibleValues(values);
         return op;
     };
 

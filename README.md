@@ -78,7 +78,7 @@ To dump data to a JSON file just call the ```dump()``` method.
 // dump to the json file named "data.json"
 people.dump('data.json');
 ```
-####Loading data (IN BETA
+####Loading data (in beta)
 One can load data into a database from a file like this:
 ```js
 // Load back up the database and print it
@@ -119,4 +119,9 @@ Similarly, if we want to find documents with a key of ```age``` that takes on a 
 ```js
 // Find all documents where the key of 'age' has a value in between 6 and 24
 var queryresults = people.find({ 'age': range(6, 24) });
+```
+There is also an ```or``` options, where we can return all documents where the key of 'age' has a value of either 4 or 6:
+```js
+// Find all documents where the key of 'age' has a value in between 6 and 24
+var queryresults = people.find({ 'age': or([4, 6]) });
 ```

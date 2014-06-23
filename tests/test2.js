@@ -20,6 +20,6 @@ esums.insert({
   'IPs': [5234, 7432]
 });
 
-var queryresults = esums.find({ 'DOC': great(1) });
+var queryresults = esums.find({ 'DOC': or([1, 3]) });
 console.log("Matching documents");
 console.log(queryresults);
