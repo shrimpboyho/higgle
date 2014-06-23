@@ -74,9 +74,9 @@
                         }
                         if (qvalue.type === 'or') {
                             // check if the value matches one of the possibilities
-                            var i;
-                            for (i = 0; i < qvalue.possibilities.length; i++) {
-                                if(qvalue.possibilities[i] === dvalue) {
+                            var z;
+                            for (z = 0; z < qvalue.possibilities.length; z++) {
+                                if(qvalue.possibilities[z] === dvalue) {
                                     buffer.push(true);
                                     break;
                                 }
