@@ -122,6 +122,6 @@ var queryresults = people.find({ 'age': range(6, 24) });
 ```
 There is also an ```or``` options, where we can return all documents where the key of 'age' has a value of either 4 or 6:
 ```js
-// Find all documents where the key of 'age' has a value in between 6 and 24
+// Find all documents where the key of 'age' has a value of either 4 or 6
 var queryresults = people.find({ 'age': or([4, 6]) });
 ```
